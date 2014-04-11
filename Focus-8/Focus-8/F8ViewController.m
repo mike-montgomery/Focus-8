@@ -47,6 +47,6 @@
     NSInteger days = (ti / 86400);
     
     //Update the label with the remaining time
-    self.countdownLabel.text = [NSString stringWithFormat:@"%O days %O hrs %O min %O sec", days, hours, minutes, seconds];
+    self.countdownLabel.text = [NSString stringWithFormat:@"%i days %i hrs %i min %i sec", days, hours, minutes, seconds];
 }
 @end
