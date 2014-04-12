@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface F8ViewController : UIViewController
+@interface F8ViewController : UIViewController {
+    NSDate *destinationDate;
+}
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 - (IBAction)startCountdown:(id)sender;
 

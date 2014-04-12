@@ -17,7 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	//Set destination date equal to 1 hour from now
+    destinationDate = [NSDate dateWithTimeIntervalSinceNow:3600];
 }
 
 - (void)didReceiveMemoryWarning
@@ -27,10 +28,6 @@
 }
 
 - (IBAction)startCountdown:(id)sender {
-    //Remove the time component from the datePicker.  We only care about the date
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
-    self.datePicker.date = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:self.datePicker.date]];
     
     //Set up a timer that calls the updateTime method every second to update the label
     NSTimer *timer;
@@ -40,13 +37,13 @@
 -(void)updateTime
 {
     //Get the time left until the specified date
-    NSInteger ti = ((NSInteger) [self.datePicker.date timeIntervalSinceNow]);
+    NSInteger ti = (NSInteger)destinationDate;
     NSInteger seconds = ti % 60;
     NSInteger minutes = (ti / 60) % 60;
     NSInteger hours = (ti / 3600) % 24;
-    NSInteger days = (ti / 86400);
+   
     
     //Update the label with the remaining time
-    self.countdownLabel.text = [NSString stringWithFormat:@"%i days %i hrs %i min %i sec", days, hours, minutes, seconds];
+    self.countdownLabel.text = [NSString stringWithFormat:@"%i hrs %i min %i sec",hours, minutes, seconds];
 }
 @end
