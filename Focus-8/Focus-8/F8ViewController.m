@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
 	//Set destination date equal to 1 hour from now
-    destinationDate = [NSDate dateWithTimeIntervalSinceNow:3600];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,19 +31,27 @@
     
     //Set up a timer that calls the updateTime method every second to update the label
     NSTimer *timer;
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(updateTime) userInfo:Nil repeats:YES];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:Nil repeats:YES];
+    destinationDate = [NSDate dateWithTimeIntervalSinceNow:3600];
 }
 
 -(void)updateTime
 {
-    //Get the time left until the specified date
-    NSInteger ti = (NSInteger)destinationDate;
-    NSInteger seconds = ti % 60;
-    NSInteger minutes = (ti / 60) % 60;
-    NSInteger hours = (ti / 3600) % 24;
-   
+    //Create a NSCalendar to count the time
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
-    //Update the label with the remaining time
-    self.countdownLabel.text = [NSString stringWithFormat:@"%i hrs %i min %i sec",hours, minutes, seconds];
+    //Get units of time from calendar
+    int units = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    //Create componets from units and set the time from now
+    NSDateComponents *components = [calendar components:units fromDate:[NSDate date] toDate:destinationDate options:0];
+    
+    //Update label with values from components
+    [countdownLabel setText:[NSString stringWithFormat:@"%ld%c:%ld%c:%ld%c", (long)[components hour], 'h', (long)[components minute], 'm', (long)[components second], 's']];
 }
+
+- (IBAction)resetCountdown:(id)sender {
+   
+}
+
 @end

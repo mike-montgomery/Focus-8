@@ -10,9 +10,11 @@
 
 @interface F8ViewController : UIViewController {
     NSDate *destinationDate;
+    IBOutlet UILabel *countdownLabel;
 }
 
-@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+
 - (IBAction)startCountdown:(id)sender;
+- (IBAction)resetCountdown:(id)sender;
 
 @end
