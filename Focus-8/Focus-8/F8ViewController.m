@@ -30,7 +30,6 @@
 - (IBAction)startCountdown:(id)sender {
     
     //Set up a timer that calls the updateTime method every second to update the label
-    NSTimer *timer;
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:Nil repeats:YES];
     destinationDate = [NSDate dateWithTimeIntervalSinceNow:3600];
 }
@@ -51,7 +50,8 @@
 }
 
 - (IBAction)resetCountdown:(id)sender {
-   
+    [timer invalidate];
+    [countdownLabel setText:@"00h:00m:00s"];
 }
 
 @end

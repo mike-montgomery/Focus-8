@@ -10,6 +10,7 @@
 
 @interface F8ViewController : UIViewController {
     NSDate *destinationDate;
+    NSTimer *timer;
     IBOutlet UILabel *countdownLabel;
 }
 
