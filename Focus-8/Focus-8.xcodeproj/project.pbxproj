@@ -21,6 +21,7 @@
 		0C8AE77318F6DF5C00E9769A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8AE75518F6DF5C00E9769A /* UIKit.framework */; };
 		0C8AE77B18F6DF5C00E9769A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C8AE77918F6DF5C00E9769A /* InfoPlist.strings */; };
 		0C8AE77D18F6DF5C00E9769A /* Focus_8Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8AE77C18F6DF5C00E9769A /* Focus_8Tests.m */; };
+		0C8AE78A18FCABFE00E9769A /* BreakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8AE78918FCABFE00E9769A /* BreakViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		0C8AE77818F6DF5C00E9769A /* Focus-8Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Focus-8Tests-Info.plist"; sourceTree = "<group>"; };
 		0C8AE77A18F6DF5C00E9769A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C8AE77C18F6DF5C00E9769A /* Focus_8Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Focus_8Tests.m; sourceTree = "<group>"; };
+		0C8AE78818FCABFE00E9769A /* BreakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreakViewController.h; path = ../BreakViewController.h; sourceTree = "<group>"; };
+		0C8AE78918FCABFE00E9769A /* BreakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreakViewController.m; path = ../BreakViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				0C8AE76318F6DF5C00E9769A /* Main.storyboard */,
 				0C8AE76618F6DF5C00E9769A /* F8ViewController.h */,
 				0C8AE76718F6DF5C00E9769A /* F8ViewController.m */,
+				0C8AE78818FCABFE00E9769A /* BreakViewController.h */,
+				0C8AE78918FCABFE00E9769A /* BreakViewController.m */,
 				0C8AE76918F6DF5C00E9769A /* Images.xcassets */,
 				0C8AE75818F6DF5C00E9769A /* Supporting Files */,
 			);
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C8AE78A18FCABFE00E9769A /* BreakViewController.m in Sources */,
 				0C8AE76818F6DF5C00E9769A /* F8ViewController.m in Sources */,
 				0C8AE76218F6DF5C00E9769A /* F8AppDelegate.m in Sources */,
 				0C8AE75E18F6DF5C00E9769A /* main.m in Sources */,
@@ -461,6 +467,7 @@
 				0C8AE78218F6DF5C00E9769A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C8AE78318F6DF5C00E9769A /* Build configuration list for PBXNativeTarget "Focus-8Tests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				0C8AE78518F6DF5C00E9769A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
