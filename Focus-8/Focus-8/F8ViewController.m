@@ -12,12 +12,13 @@
 @end
 @implementation F8ViewController
 
-int timeTick = 60;
+
+int timeTick = 3600;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//Set destination date equal to 1 hour from now
+	
     
 }
 
@@ -67,6 +68,53 @@ int timeTick = 60;
 - (IBAction)resetCountdown:(id)sender {
     [timer invalidate];
     [countdownLabel setText:@"00h:00m:00s"];
+}
+
+-(void)addPickerView{
+    pickerArray = [[NSArray alloc] initWithObjects:@"Casual(20min)",@"Fair(40min)", @"Difficult(1 hr)", @"Intense(1 hr 15min)", nil];
+    myTextField = [[UITextField alloc]initWithFrame:CGRectMake(10, 100, 300, 30)];
+    myTextField.borderStyle = UITextBorderStyleRoundedRect;
+    myTextField.delegate = self;
+    [self.view addSubview:myTextField];
+    [myTextField setPlaceholder:@"Pick Difficulty of Work"];
+    myPickerView = [[UIPickerView alloc]init];
+    myPickerView.dataSource = self;
+    myPickerView.delegate = self;
+    myPickerView.showsSelectionIndicator = YES;
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-myPickerView.frame.size.height-50, 320, 50)];
+    [toolBar setBarStyle:UIBarStyleBlackOpaque];
+    NSArray *toolbarItems = [NSArray arrayWithObjects:doneButton, nil];
+    [toolBar setItems:toolbarItems];
+    myTextField.inputView = myPickerView;
+    myTextField.inputAccessoryView = toolBar;
+}
+
+#pragma mark - Text field delegates
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if ([textField.text isEqualToString:@""]) {
+       
+    }
+}
+#pragma mark - Picker View Data source
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+-(NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component{
+    return [pickerArray count];
+}
+
+#pragma mark- Picker View Delegate
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:
+(NSInteger)row inComponent:(NSInteger)component{
+    [myTextField setText:[pickerArray objectAtIndex:row]];
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:
+(NSInteger)row forComponent:(NSInteger)component{
+    return [pickerArray objectAtIndex:row];
 }
 
 @end
