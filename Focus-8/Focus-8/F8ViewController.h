@@ -8,16 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface F8ViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>{
+@interface F8ViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate> {
     NSDate *destinationDate;
     NSTimer *timer;
     IBOutlet UILabel *countdownLabel;
-    
-    UITextField *myTextField;
-    UIPickerView *myPickerView;
-    NSArray *pickerArray;
 }
-
+@property (nonatomic, strong)IBOutlet UIPickerView *myPickerView;
+@property (nonatomic, strong)NSArray *itemsArray;
 
 - (IBAction)startCountdown:(id)sender;
 - (IBAction)resetCountdown:(id)sender;

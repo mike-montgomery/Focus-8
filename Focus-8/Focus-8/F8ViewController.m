@@ -10,16 +10,20 @@
 
 @interface F8ViewController ()
 @end
-@implementation F8ViewController
 
+@implementation F8ViewController;
+@synthesize myPickerView;
+@synthesize itemsArray;
 
-int timeTick = 3600;
+int timeTick;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    
+    myPickerView.delegate = self;
+    myPickerView.dataSource = self;
+    itemsArray = [[NSArray alloc]initWithObjects:@"Casual", @"Hard", @"Intense", @"Exhausting", nil];
+    //Casual=20min, Hard=35min, Intense = 50min, Exhausting=1hour 10min
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,51 +74,45 @@ int timeTick = 3600;
     [countdownLabel setText:@"00h:00m:00s"];
 }
 
--(void)addPickerView{
-    pickerArray = [[NSArray alloc] initWithObjects:@"Casual(20min)",@"Fair(40min)", @"Difficult(1 hr)", @"Intense(1 hr 15min)", nil];
-    myTextField = [[UITextField alloc]initWithFrame:CGRectMake(10, 100, 300, 30)];
-    myTextField.borderStyle = UITextBorderStyleRoundedRect;
-    myTextField.delegate = self;
-    [self.view addSubview:myTextField];
-    [myTextField setPlaceholder:@"Pick Difficulty of Work"];
-    myPickerView = [[UIPickerView alloc]init];
-    myPickerView.dataSource = self;
-    myPickerView.delegate = self;
-    myPickerView.showsSelectionIndicator = YES;
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
-    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-myPickerView.frame.size.height-50, 320, 50)];
-    [toolBar setBarStyle:UIBarStyleBlackOpaque];
-    NSArray *toolbarItems = [NSArray arrayWithObjects:doneButton, nil];
-    [toolBar setItems:toolbarItems];
-    myTextField.inputView = myPickerView;
-    myTextField.inputAccessoryView = toolBar;
-}
-
-#pragma mark - Text field delegates
-
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    if ([textField.text isEqualToString:@""]) {
-       
-    }
-}
-#pragma mark - Picker View Data source
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+#pragma mark - UIPickerView DataSource
+//Returns the number of 'columns' to display
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
--(NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component{
-    return [pickerArray count];
+//Returns the number of rows in each component
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [itemsArray count];
 }
 
-#pragma mark- Picker View Delegate
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:
-(NSInteger)row inComponent:(NSInteger)component{
-    [myTextField setText:[pickerArray objectAtIndex:row]];
+#pragma mark - UIPickerView Delegate
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 30.0;
 }
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:
-(NSInteger)row forComponent:(NSInteger)component{
-    return [pickerArray objectAtIndex:row];
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [itemsArray objectAtIndex:row];
+}
+
+//If the use choses from the pickerview, it calls this function
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    //Print to the console what the user choses
+    NSLog(@"Chosen item: %@", [itemsArray objectAtIndex:row]);
+    NSString *chosenRow =[itemsArray objectAtIndex:row];
+    if ([chosenRow  isEqualToString: @"Casual"]){
+        timeTick = 1200;
+    }else if ([chosenRow  isEqualToString: @"Hard"]){
+        timeTick = 2100;
+    }else if ([chosenRow isEqualToString:@"Intense"]){
+        timeTick = 3000;
+    }else if ([chosenRow isEqualToString:@"Exhausting"]) {
+        timeTick = 4200;
+    }
+        
 }
 
 @end
