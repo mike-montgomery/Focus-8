@@ -104,7 +104,7 @@ int timeTick;
     NSLog(@"Chosen item: %@", [itemsArray objectAtIndex:row]);
     NSString *chosenRow =[itemsArray objectAtIndex:row];
     if ([chosenRow  isEqualToString: @"Casual"]){
-        timeTick = 1200;
+        timeTick = 20;
     }else if ([chosenRow  isEqualToString: @"Hard"]){
         timeTick = 2100;
     }else if ([chosenRow isEqualToString:@"Intense"]){
